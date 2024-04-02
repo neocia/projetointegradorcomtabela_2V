@@ -38,12 +38,12 @@ const Home = () => {
       <div style={{ width: '50%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
         <Avatar sx={{ width: '50%', height: '50%' }} src={Logo} variant="square" />
       </div>
-      <div style={{ width: '50%', background: Fundo}}>
+      <div style={{ width: '50%', background: Fundo }}>
         <form style={{ height: '100%', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }} onSubmit={(e) => {
-                e.preventDefault();
-                // Adicione aqui a lógica de autenticação, se necessário
-                window.location.href = '/SignInSide';
-              }}>
+          e.preventDefault();
+          // Adicione aqui a lógica de autenticação, se necessário
+          window.location.href = '/SignInSide';
+        }}>
           <TextField
             sx={{ marginBottom: '8px', width: '50%' }}
             label="Nome completo"
@@ -62,8 +62,8 @@ const Home = () => {
             variant="filled"
             fullWidth
           />
-		   <TextField
-		    sx={{ marginBottom: '8px', width: '50%' }}
+          <TextField
+            sx={{ marginBottom: '8px', width: '50%' }}
             required
             fullWidth
             name="password"
@@ -71,17 +71,26 @@ const Home = () => {
             type="password"
             id="password"
             autoComplete="current-password"
-			variant="filled"
+            variant="filled"
           />
-          <CardCargoUsuarios   />
-          <CardEscolas   />
-         
-          <Button
-            style={{ marginTop: '16px', width: '50%', background: 'darkblue' }}
-            variant="contained"
-          >
-            Enviar
-          </Button>
+          <CardCargoUsuarios />
+          <CardEscolas />
+
+          <div style={{ display: 'flex', justifyContent: 'space-between', width: '50%' }}>
+            <Button
+              style={{ marginTop: '16px', width: '45%', background: 'darkblue' }}
+              variant="contained"
+            >
+              Voltar
+            </Button>
+
+            <Button
+              style={{ marginTop: '16px', width: '45%', background: 'darkblue' }}
+              variant="contained"
+            >
+              Enviar
+            </Button>
+          </div>
         </form>
       </div>
     </div>
