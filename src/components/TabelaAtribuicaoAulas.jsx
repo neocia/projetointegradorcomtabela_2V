@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, Typography, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TextField, Typography, FormControl, InputLabel, Select, MenuItem, Button } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 
 const TabelaAtribuicaoAulas = () => {
-  const people = [
-    { id: 1, name: 'Professor 1' },
-    { id: 2, name: 'Professor 2' },
-    { id: 3, name: 'Professor 3' },
-    { id: 4, name: 'Eventual  1' },
-    { id: 5, name: 'Eventual  2' },
-    { id: 6, name: 'Eventual  3' },
-  ];
-
   const [dados, setDados] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTurno, setSelectedTurno] = useState('');
   const [query, setQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [turno, setTurno] = useState('');
+
+  // Lista de 40 professores disponíveis
+  const professoresDisponiveis = Array.from({ length: 40 }, (_, index) => ({ id: index + 1, name: `P${index + 1}` }));
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -23,30 +19,34 @@ const TabelaAtribuicaoAulas = () => {
 
   const handleTurnoChange = (event) => {
     setSelectedTurno(event.target.value);
+    setCurrentPage(1);
+    setTurno(event.target.value); // Definir o turno selecionado
+
     let dadosAtualizados = [];
 
+    // Definição das turmas e horários de acordo com o turno selecionado
     if (event.target.value === 'Manhã') {
       const turmasManha = ['1A', '1B', '1C', '2A', '2B', '2C', '3A', '3B', '3C', '9A', '9B', '9C'];
       const horariosManha = ['07h00 - 07H45', '07h45 - 08H30', '08h30 - 09H15', '09H35 - 10H20', '10H20 - 11H05', '11H05 - 11H50', '11H50 - 12H35'];
 
-      turmasManha.forEach(turma => {
-        const novaTurma = { turma, isEdit: false, horarios: horariosManha };
+      turmasManha.slice((currentPage - 1) * 6, currentPage * 6).forEach(turma => {
+        const novaTurma = { turma, isEdit: false, horarios: horariosManha, professores: Array(12).fill('') }; // 12 aulas de manhã
         dadosAtualizados.push(novaTurma);
       });
     } else if (event.target.value === 'Tarde') {
       const turmasTarde = ['6A', '6B', '6C', '6D', '7A', '7B', '7C', '7D', '8A', '8B', '8C', '8D'];
       const horariosTarde = ['13h00 - 13H45', '13h45 - 14H30', '14h30 - 15H15', '15H35 - 16H20', '16H20 - 17H05', '17H50 - 18H35'];
 
-      turmasTarde.forEach(turma => {
-        const novaTurma = { turma, isEdit: false, horarios: horariosTarde };
+      turmasTarde.slice((currentPage - 1) * 6, currentPage * 6).forEach(turma => {
+        const novaTurma = { turma, isEdit: false, horarios: horariosTarde, professores: Array(12).fill('') }; // 12 aulas à tarde
         dadosAtualizados.push(novaTurma);
       });
     } else if (event.target.value === 'Noite') {
       const turmasNoite = ['1D', '2D', '3C', '3D', '2A1', '4A1'];
       const horariosNoite = ['19h00 - 19h45', '19h45 - 20h30', '20H45 - 21H30', '21h30 - 22H15', '22H15 - 23H00'];
 
-      turmasNoite.forEach(turma => {
-        const novaTurma = { turma, isEdit: false, horarios: horariosNoite };
+      turmasNoite.slice((currentPage - 1) * 6, currentPage * 6).forEach(turma => {
+        const novaTurma = { turma, isEdit: false, horarios: horariosNoite, professores: Array(10).fill('') }; // 10 aulas à noite
         dadosAtualizados.push(novaTurma);
       });
     }
@@ -55,13 +55,9 @@ const TabelaAtribuicaoAulas = () => {
     handleQueryChange('');
   };
 
-  const handleEdit = (id, campo, valor) => {
-    const novosDados = dados.map(item => {
-      if (item.id === id) {
-        return { ...item, [campo]: valor };
-      }
-      return item;
-    });
+  const handleEdit = (turmaIndex, professorIndex, newValue) => {
+    const novosDados = [...dados];
+    novosDados[turmaIndex].professores[professorIndex] = newValue ? newValue.name : '';
     setDados(novosDados);
   };
 
@@ -69,15 +65,49 @@ const TabelaAtribuicaoAulas = () => {
     setQuery(value);
   };
 
-  const filteredPeople =
-    query === ''
-      ? []
-      : people.filter((person) =>
-          person.name
-            .toLowerCase()
-            .replace(/\s+/g, '')
-            .includes(query.toLowerCase().replace(/\s+/g, ''))
-        );
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1); // Aumentar a página atual em 1
+    handlePaginate(currentPage + 1); // Atualizar os dados para a próxima página
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage(currentPage - 1); // Diminuir a página atual em 1
+    handlePaginate(currentPage - 1); // Atualizar os dados para a página anterior
+  };
+
+  const handlePaginate = (page) => {
+    let dadosAtualizados = [];
+
+    // Definição das turmas e horários de acordo com o turno e a página selecionados
+    if (turno === 'Manhã') {
+      const turmasManha = ['1A', '1B', '1C', '2A', '2B', '2C', '3A', '3B', '3C', '9A', '9B', '9C'];
+      const horariosManha = ['07h00 - 07H45', '07h45 - 08H30', '08h30 - 09H15', '09H35 - 10H20', '10H20 - 11H05', '11H05 - 11H50', '11H50 - 12H35'];
+
+      turmasManha.slice((page - 1) * 6, page * 6).forEach(turma => {
+        const novaTurma = { turma, isEdit: false, horarios: horariosManha, professores: Array(12).fill('') }; // 12 aulas de manhã
+        dadosAtualizados.push(novaTurma);
+      });
+    } else if (turno === 'Tarde') {
+      const turmasTarde = ['6A', '6B', '6C', '6D', '7A', '7B', '7C', '7D', '8A', '8B', '8C', '8D'];
+      const horariosTarde = ['13h00 - 13H45', '13h45 - 14H30', '14h30 - 15H15', '15H35 - 16H20', '16H20 - 17H05', '17H50 - 18H35'];
+
+      turmasTarde.slice((page - 1) * 6, page * 6).forEach(turma => {
+        const novaTurma = { turma, isEdit: false, horarios: horariosTarde, professores: Array(12).fill('') }; // 12 aulas à tarde
+        dadosAtualizados.push(novaTurma);
+      });
+    } else if (turno === 'Noite') {
+      const turmasNoite = ['1D', '2D', '3C', '3D', '2A1', '4A1'];
+      const horariosNoite = ['19h00 - 19h45', '19h45 - 20h30', '20H45 - 21H30', '21h30 - 22H15', '22H15 - 23H00'];
+
+      turmasNoite.slice((page - 1) * 6, page * 6).forEach(turma => {
+        const novaTurma = { turma, isEdit: false, horarios: horariosNoite, professores: Array(10).fill('') }; // 10 aulas à noite
+        dadosAtualizados.push(novaTurma);
+      });
+    }
+
+    setDados(dadosAtualizados);
+    handleQueryChange('');
+  };
 
   return (
     <div>
@@ -110,7 +140,7 @@ const TabelaAtribuicaoAulas = () => {
         <Table aria-label="Tabela de horarios">
           <TableHead style={{ background: '#77dd77', color: '#fff', fontWeight: 'bold', fontSize: '16px' }}>
             <TableRow>
-              <TableCell>Horário</TableCell>
+              <TableCell style={{ width: '120px' }}>Horário</TableCell>
               {dados.length > 0 && dados.map((turma, index) => (
                 <TableCell key={index} align="center">{turma.turma}</TableCell>
               ))}
@@ -120,16 +150,15 @@ const TabelaAtribuicaoAulas = () => {
             {dados[0]?.horarios.map((horario, index) => (
               <TableRow key={index}>
                 <TableCell component="th" scope="row">{horario}</TableCell>
-                {dados.map((turma, idx) => (
-                  <TableCell key={idx} align="center">
+                {dados.map((turma, turmaIndex) => (
+                  <TableCell key={turmaIndex} align="center">
                     <div className="relative mt-1">
                       <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
-                        
                         <Autocomplete
-                          options={people}
+                          options={professoresDisponiveis}
                           getOptionLabel={(option) => option.name}
-                          value={turma.professor}
-                          onChange={(event, newValue) => handleEdit(turma.id, `professor${idx}`, newValue ? newValue.name : '')}
+                          value={turma.professores[index] ? professoresDisponiveis.find(p => p.name === turma.professores[index]) : null}
+                          onChange={(event, newValue) => handleEdit(turmaIndex, index, newValue)}
                           renderInput={(params) => (
                             <TextField
                               {...params}
@@ -150,6 +179,25 @@ const TabelaAtribuicaoAulas = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <div style={{ textAlign: 'center', marginTop: '20px' }}>
+        <Button 
+          disabled={currentPage === 1} 
+          onClick={handlePrevPage}
+          variant="contained"
+          color="primary"
+        >
+          &#8592; Anterior
+        </Button>
+        <span style={{ margin: '0 10px', fontSize: '20px' }}>{currentPage}</span>
+        <Button 
+          disabled={currentPage === 2} 
+          onClick={handleNextPage}
+          variant="contained"
+          color="primary"
+        >
+          Próximo &#8594;
+        </Button>
+      </div>
     </div>
   );
 };

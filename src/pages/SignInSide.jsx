@@ -69,7 +69,7 @@ export default function SignInSide() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Entrar
+              
             </Typography>
              <Box
               component="form"
@@ -94,8 +94,8 @@ export default function SignInSide() {
                 margin="normal"
                 required
                 fullWidth
-                name="password"
-                label="Password"
+                name="Senha"
+                label="Senha"
                 type="password"
                 id="password"
                 autoComplete="current-password"
