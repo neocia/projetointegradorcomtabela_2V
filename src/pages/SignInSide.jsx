@@ -32,12 +32,12 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignInSide() {
-//  const handleSubmit = (event) => {
-//   
-//   window.location.href = '/escolha-funcionalidade';
-//  };
+  //  const handleSubmit = (event) => {
+  //   
+  //   window.location.href = '/escolha-funcionalidade';
+  //  };
   return (
-     <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={defaultTheme}>
       <Grid container component="main" sx={{ height: '90vh' }}>
         <CssBaseline />
         <Grid
@@ -46,7 +46,7 @@ export default function SignInSide() {
           sm={4}
           md={5}
           sx={{
-            backgroundImage:`url(${Logo})`,
+            backgroundImage: `url(${Logo})`,
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -54,7 +54,7 @@ export default function SignInSide() {
             backgroundPosition: 'center',
           }}
         />
-		
+
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box
             sx={{
@@ -69,9 +69,9 @@ export default function SignInSide() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              
+
             </Typography>
-             <Box
+            <Box
               component="form"
               noValidate
               sx={{ mt: 1 }}

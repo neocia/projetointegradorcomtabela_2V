@@ -22,7 +22,7 @@ export default function AtribuicaoAulas() {
         }
     };
 
-    return (
+    return(
         <div style={{ width: '100vw', height: '100vh', display: 'flex', flexDirection: 'row' }}>
             <div style={{ width: '25%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                 <Avatar sx={{ width: '50%', height: '50%' }} src={Logo} variant="square" />
@@ -32,7 +32,7 @@ export default function AtribuicaoAulas() {
                     <TabelaAtribuicaoAulas />
                     <Box mt={2} mb={2} display="flex" justifyContent="space-between" alignItems="center" width="100%">
                         <FormControl fullWidth style={{ marginRight: '10px' }}>
-
+                            
                             <TextField
                                 id="startDate"
                                 label="Data de Início"
@@ -42,11 +42,11 @@ export default function AtribuicaoAulas() {
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
-                                sx={{ backgroundColor: 'white', fontWeight: 'bold', fontSize: '16px' }} // Adiciona a cor de fundo branca
+                                sx={{ backgroundColor: 'white', fontWeight: 'bold', fontSize: '16px'}} // Adiciona a cor de fundo branca
                             />
                         </FormControl>
                         <FormControl fullWidth style={{ marginLeft: '10px' }}>
-
+                           
                             <TextField
                                 id="endDate"
                                 label="Data de Fim"
