@@ -3,19 +3,13 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 import Autocomplete from '@mui/material/Autocomplete';
 
 const TabelaAtribuicaoAulas = () => {
-  const people = [
-    { id: 1, name: 'Professor 1' },
-    { id: 2, name: 'Professor 2' },
-    { id: 3, name: 'Professor 3' },
-    { id: 4, name: 'Eventual  1' },
-    { id: 5, name: 'Eventual  2' },
-    { id: 6, name: 'Eventual  3' },
-  ];
-
   const [dados, setDados] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTurno, setSelectedTurno] = useState('');
   const [query, setQuery] = useState('');
+
+  // Lista de 40 professores disponíveis
+  const professoresDisponiveis = Array.from({ length: 40 }, (_, index) => ({ id: index + 1, name: `P${index + 1}` }));
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -25,12 +19,13 @@ const TabelaAtribuicaoAulas = () => {
     setSelectedTurno(event.target.value);
     let dadosAtualizados = [];
 
+    // Definição das turmas e horários de acordo com o turno selecionado
     if (event.target.value === 'Manhã') {
       const turmasManha = ['1A', '1B', '1C', '2A', '2B', '2C', '3A', '3B', '3C', '9A', '9B', '9C'];
       const horariosManha = ['07h00 - 07H45', '07h45 - 08H30', '08h30 - 09H15', '09H35 - 10H20', '10H20 - 11H05', '11H05 - 11H50', '11H50 - 12H35'];
 
       turmasManha.forEach(turma => {
-        const novaTurma = { turma, isEdit: false, horarios: horariosManha };
+        const novaTurma = { turma, isEdit: false, horarios: horariosManha, professores: Array(12).fill('') }; // 12 aulas de manhã
         dadosAtualizados.push(novaTurma);
       });
     } else if (event.target.value === 'Tarde') {
@@ -38,7 +33,7 @@ const TabelaAtribuicaoAulas = () => {
       const horariosTarde = ['13h00 - 13H45', '13h45 - 14H30', '14h30 - 15H15', '15H35 - 16H20', '16H20 - 17H05', '17H50 - 18H35'];
 
       turmasTarde.forEach(turma => {
-        const novaTurma = { turma, isEdit: false, horarios: horariosTarde };
+        const novaTurma = { turma, isEdit: false, horarios: horariosTarde, professores: Array(12).fill('') }; // 12 aulas à tarde
         dadosAtualizados.push(novaTurma);
       });
     } else if (event.target.value === 'Noite') {
@@ -46,7 +41,7 @@ const TabelaAtribuicaoAulas = () => {
       const horariosNoite = ['19h00 - 19h45', '19h45 - 20h30', '20H45 - 21H30', '21h30 - 22H15', '22H15 - 23H00'];
 
       turmasNoite.forEach(turma => {
-        const novaTurma = { turma, isEdit: false, horarios: horariosNoite };
+        const novaTurma = { turma, isEdit: false, horarios: horariosNoite, professores: Array(10).fill('') }; // 10 aulas à noite
         dadosAtualizados.push(novaTurma);
       });
     }
@@ -55,29 +50,15 @@ const TabelaAtribuicaoAulas = () => {
     handleQueryChange('');
   };
 
-  const handleEdit = (id, campo, valor) => {
-    const novosDados = dados.map(item => {
-      if (item.id === id) {
-        return { ...item, [campo]: valor };
-      }
-      return item;
-    });
+  const handleEdit = (turmaIndex, professorIndex, newValue) => {
+    const novosDados = [...dados];
+    novosDados[turmaIndex].professores[professorIndex] = newValue ? newValue.name : '';
     setDados(novosDados);
   };
 
   const handleQueryChange = (value) => {
     setQuery(value);
   };
-
-  const filteredPeople =
-    query === ''
-      ? []
-      : people.filter((person) =>
-          person.name
-            .toLowerCase()
-            .replace(/\s+/g, '')
-            .includes(query.toLowerCase().replace(/\s+/g, ''))
-        );
 
   return (
     <div>
@@ -120,16 +101,15 @@ const TabelaAtribuicaoAulas = () => {
             {dados[0]?.horarios.map((horario, index) => (
               <TableRow key={index}>
                 <TableCell component="th" scope="row">{horario}</TableCell>
-                {dados.map((turma, idx) => (
-                  <TableCell key={idx} align="center">
+                {dados.map((turma, turmaIndex) => (
+                  <TableCell key={turmaIndex} align="center">
                     <div className="relative mt-1">
                       <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
-                        
                         <Autocomplete
-                          options={people}
+                          options={professoresDisponiveis}
                           getOptionLabel={(option) => option.name}
-                          value={turma.professor}
-                          onChange={(event, newValue) => handleEdit(turma.id, `professor${idx}`, newValue ? newValue.name : '')}
+                          value={turma.professores[index]}
+                          onChange={(event, newValue) => handleEdit(turmaIndex, index, newValue)}
                           renderInput={(params) => (
                             <TextField
                               {...params}
