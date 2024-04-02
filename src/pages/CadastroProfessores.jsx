@@ -1,6 +1,4 @@
 import React from 'react';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Avatar } from '@mui/material';
@@ -8,11 +6,14 @@ import Logo from '../assets/SGCPE.png';
 import CardCargoProfessores from "../components/CardCargoProfessores";
 import CardCategoriaProfessores from "../components/CardCategoriaProfessores";
 import Background from '../assets/Fundo.png'
+import MenuApp from '../components/MenuApp';
 
 const Fundo = `url(${Background})`;
 
 const Cadastro = () => {
   return (
+    <>
+    <MenuApp/>
     <div style={{ width: '100vw', height: '100vh', display: 'flex', flexDirection: 'row' }}>
       <div style={{ width: '50%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
         <Avatar sx={{ width: '50%', height: '50%' }} src={Logo} variant="square" />
@@ -53,6 +54,7 @@ const Cadastro = () => {
           </form>
     </div>
   </div>
+  </>
   );
 };
 

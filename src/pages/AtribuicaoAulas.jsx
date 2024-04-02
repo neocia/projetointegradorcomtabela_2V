@@ -3,6 +3,7 @@ import TabelaAtribuicaoAulas from "../components/TabelaAtribuicaoAulas";
 import { Avatar, Box, Button, TextField, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import Logo from '../assets/SGCPE.png';
 import Background from '../assets/Fundo.png';
+import MenuApp from "../components/MenuApp";
 
 const Fundo = `url(${Background})`;
 
@@ -23,11 +24,10 @@ export default function AtribuicaoAulas() {
     };
 
     return(
+        <>
+        <MenuApp/>
         <div style={{ width: '100vw', height: '100vh', display: 'flex', flexDirection: 'row' }}>
-            <div style={{ width: '25%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                <Avatar sx={{ width: '50%', height: '50%' }} src={Logo} variant="square" />
-            </div>
-            <div style={{ width: '75%', padding: '30px', background: Fundo }}>
+            <div style={{ width: '100%', padding: '30px', background: Fundo }}>
                 <form style={{ height: '100%', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                     <TabelaAtribuicaoAulas />
                     <Box mt={2} mb={2} display="flex" justifyContent="space-between" alignItems="center" width="100%">
@@ -64,5 +64,6 @@ export default function AtribuicaoAulas() {
                 </form>
             </div>
         </div>
+        </>
     );
 }

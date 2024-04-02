@@ -27,7 +27,7 @@ export default function EscolhaFuncionalidade() {
                 justifyContent: 'center', 
                 alignContent: 'center' 
             }}>
-                <CardFuncionalidade img={Figura1} header='Atribuição de Aulas' url={'/tabela-professores'} />
+                <CardFuncionalidade img={Figura1} header='Atribuição de Aulas' url={'/atribuicao-aulas'} />
             </div>
             <div style={{ 
                 width: '30%', 
