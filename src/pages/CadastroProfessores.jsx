@@ -45,12 +45,23 @@ const Cadastro = () => {
             />          
             <CardCategoriaProfessores/>
             <CardCargoProfessores/>
-              <Button
-              style={{ marginTop: '16px', width: '50%', background: 'darkblue'}}
+            
+            
+            <div style={{ display: 'flex', justifyContent: 'space-between', width: '50%' }}>
+            <Button
+              style={{ marginTop: '16px', width: '45%', background: 'darkblue' }}
               variant="contained"
             >
-              Enviar
+              Excluir
             </Button>
+
+            <Button
+              style={{ marginTop: '16px', width: '45%', background: 'darkblue' }}
+              variant="contained"
+            >
+              Cadastrar
+            </Button>
+          </div>
           </form>
     </div>
   </div>

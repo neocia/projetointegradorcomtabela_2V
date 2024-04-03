@@ -14,8 +14,8 @@ import MenuItem from '@mui/material/MenuItem';
 import HomeIcon from '@mui/icons-material/Home';
 import Logo from '../assets/SGCPE.png'
 
-const pages = [{campo:'Atribuição de Aulas', url:'/atribuicao-aulas'}, {campo:'Cadastro de Professores', url:'/cadastro-professores'}];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = [{ campo: 'Atribuição de Aulas', url: '/atribuicao-aulas' }, { campo: 'Cadastro de Professores', url: '/cadastro-professores' }];
+const settings = ['Perfil', 'Sair'];
 
 function MenuApp() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -40,10 +40,10 @@ function MenuApp() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-            <IconButton href='/escolha-funcionalidade'>
-                <HomeIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-            </IconButton>
-          
+          <IconButton href='/escolha-funcionalidade'>
+            <HomeIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          </IconButton>
+
           <Typography
             variant="h6"
             noWrap
@@ -99,7 +99,7 @@ function MenuApp() {
             </Menu>
           </Box>
           <IconButton href='/escolha-funcionalidade'>
-            <HomeIcon  sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+            <HomeIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           </IconButton>
 
           <Typography
