@@ -11,11 +11,11 @@ function App() {
     <Router>
       <div style={{ width: '100%', height: '100%' }}>
         <Routes> {/* Envolve todos os seus componentes Route dentro de Routes */}
-          <Route exact path="/" element={<Home/>} /> {/* Use 'element' em vez de 'component' */}
+          <Route exact path="/" element={<Home />} /> {/* Use 'element' em vez de 'component' */}
           <Route path="/cadastro-usuarios" element={<CadastroUsuarios />} />
           <Route path="/escolha-funcionalidade" element={<EscolhaFuncionalidade />} />
-		  <Route path="/cadastro-professores" element={<CadastroProfessores />} />
-		  <Route path="/atribuicao-aulas" element={<AtribuicaoAulas/>} />
+          <Route path="/cadastro-professores" element={<CadastroProfessores />} />
+          <Route path="/atribuicao-aulas" element={<AtribuicaoAulas />} />
         </Routes>
       </div>
     </Router>
