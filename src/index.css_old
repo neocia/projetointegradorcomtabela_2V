@@ -1,0 +1,62 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100vw;
+  height: 100vh;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.avatar-container {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container {
+    width: 60%;
+    padding: 30px;
+    background: #ffffff; /* Cor de fundo branca */
+}
+
+.form {
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.date-fields {
+    display: flex;
+    justify-content: space-between;
+}
+
+.date-input {
+    background-color: #ffffff; /* Cor de fundo branca */
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.save-button {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 16px;
+}

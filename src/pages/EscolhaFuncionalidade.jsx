@@ -4,41 +4,38 @@ import Figura1 from '../assets/sala.png'
 import Figura2 from '../assets/coruja.png'
 import Fundo from '../assets/Fundo.png'
 import CardFuncionalidade from "../components/CardFuncionalidade";
+import MenuApp from '../components/MenuApp';
+import { Avatar } from '@mui/material';
 
 export default function EscolhaFuncionalidade() {
     return (
-        <div 
-            style={{
-                width: '100vw', 
-                height: '100vh', 
-                display: 'flex', 
-                justifyContent: 'center', 
-                alignItems: 'center',
-                backgroundImage: `url(${Fundo})`, // Adiciona a imagem de fundo
-                backgroundSize: 'cover', // Garante que a imagem de fundo cubra toda a área
-                backgroundPosition: 'center', // Centraliza a imagem de fundo
-            }}
-        >
-            <div style={{ 
-                width: '30%', 
-                height: '60%', 
-                display: 'flex', 
-                flexDirection: 'row', 
-                justifyContent: 'center', 
-                alignContent: 'center' 
-            }}>
-                <CardFuncionalidade img={Figura1} header='Atribuição de Aulas' url={'/atribuicao-aulas'} />
+        <>
+            <MenuApp />
+            <div
+                style={{
+                    width: '100vw',
+                    height: '100vh',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    backgroundImage: `url(${Fundo})`, // Adiciona a imagem de fundo
+                    backgroundSize: 'cover', // Garante que a imagem de fundo cubra toda a área
+                    backgroundPosition: 'center', // Centraliza a imagem de fundo
+                }}
+            >
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between', // Distribui os elementos igualmente ao longo do eixo principal, com espaçamento entre eles
+                    alignItems: 'center',
+                    width: '60%', // Ajusta a largura do container principal
+                    height: '60%',
+                }}>
+                    <CardFuncionalidade img={Figura1} header='Atribuição de Aulas' url={'/atribuicao-aulas'} />
+                    <div style={{ width: '40px' }}></div> {/* Espaço entre os cards */}
+                    <CardFuncionalidade img={Figura2} header='Cadastro de Professores' url={'/cadastro-professores'} />
+                </div>
             </div>
-            <div style={{ 
-                width: '30%', 
-                height: '60%', 
-                display: 'flex', 
-                flexDirection: 'row', 
-                justifyContent: 'center', 
-                alignContent: 'center' 
-            }}>
-                <CardFuncionalidade img={Figura2} header='Cadastro de Professores' url={'/cadastro-professores'} />
-            </div>
-        </div>
+        </>
     );
 }
