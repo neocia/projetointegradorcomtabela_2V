@@ -110,7 +110,7 @@ const TabelaAtribuicaoAulas = () => {
   };
 
   return (
-    <div>
+    <div style={{ overflowX: 'auto', overflowY: 'auto', maxHeight: '500px', maxWidth: '1000px' }}>
       <div style={{ marginBottom: '20px', fontWeight: 'bold', fontSize: '16px' }}>
         <TextField
           id="date"
@@ -180,8 +180,8 @@ const TabelaAtribuicaoAulas = () => {
         </Table>
       </TableContainer>
       <div style={{ textAlign: 'center', marginTop: '20px' }}>
-        <Button 
-          disabled={currentPage === 1} 
+        <Button
+          disabled={currentPage === 1}
           onClick={handlePrevPage}
           variant="contained"
           color="primary"
@@ -189,14 +189,15 @@ const TabelaAtribuicaoAulas = () => {
           &#8592; Anterior
         </Button>
         <span style={{ margin: '0 10px', fontSize: '20px' }}>{currentPage}</span>
-        <Button 
-          disabled={currentPage === 2} 
+        <Button
+          disabled={currentPage === 2}
           onClick={handleNextPage}
           variant="contained"
           color="primary"
         >
           Próximo &#8594;
         </Button>
+
       </div>
     </div>
   );

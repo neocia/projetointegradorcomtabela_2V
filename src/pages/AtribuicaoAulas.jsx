@@ -26,7 +26,7 @@ export default function AtribuicaoAulas() {
     return (
         <>
             <MenuApp />
-            <div style={{ width: '100vw', height: '100vh', display: 'flex', flexDirection: 'row' }}>
+            <div style={{ width: '100%', height: '100vh', display: 'flex', flexDirection: 'row' }}>
                 <div style={{ width: '100%', padding: '30px', background: Fundo }}>
                     <form style={{ height: '100%', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                         <TabelaAtribuicaoAulas />
