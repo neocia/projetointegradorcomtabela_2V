@@ -31,7 +31,7 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function SignInSide() {
+export default function Home() {
   //  const handleSubmit = (event) => {
   //   
   //   window.location.href = '/escolha-funcionalidade';
