@@ -66,7 +66,7 @@ export default function Home() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Fazer Login no Sistema
+            
           </Typography>
           <Box
             component="form"
@@ -117,7 +117,7 @@ export default function Home() {
               </Grid>
               <Grid item>
                 <Link href="/cadastro-usuarios" variant="body2">
-                  Não tem uma conta? Registrar.
+                  Não tem uma conta? Registrar-se.
                 </Link>
               </Grid>
             </Grid>
