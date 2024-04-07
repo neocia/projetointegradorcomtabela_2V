@@ -1,12 +1,12 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 export default function BasicSelect() {
-  const [escolas, setEscolas] = React.useState('');
+  const [escolas, setEscolas] = React.useState("");
 
   const handleChange = (event) => {
     setEscolas(event.target.value);
@@ -17,7 +17,7 @@ export default function BasicSelect() {
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Escolas</InputLabel>
         <Select
-		  style={{ marginBottom: '8px', width: '100%' }}
+          style={{ marginBottom: "8px", width: "100%" }}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={escolas}

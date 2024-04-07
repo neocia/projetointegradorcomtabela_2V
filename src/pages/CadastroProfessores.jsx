@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { Avatar, MenuItem } from '@mui/material';
+import { Avatar, MenuItem, Grid } from '@mui/material';
 import Logo from '../assets/SGCPE.png';
 import CardCargoProfessores from "../components/CardCargoProfessores";
 import CardCategoriaProfessores from "../components/CardCategoriaProfessores";
@@ -10,149 +10,139 @@ import MenuApp from '../components/MenuApp';
 
 const Fundo = `url(${Background})`;
 
-const Cadastro = () => {
-  const [showEditModal, setShowEditModal] = useState(false); // Estado para controlar a exibição do modal de edição
-  const [showDeleteModal, setShowDeleteModal] = useState(false); // Estado para controlar a exibição do modal de exclusão
-  const [selectedProfessor, setSelectedProfessor] = useState(''); // Estado para armazenar o professor selecionado
+const CadastroProfessores = () => {
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedProfessor, setSelectedProfessor] = useState('');
 
   const handleEdit = () => {
-    setShowEditModal(true); // Mostrar o modal de edição ao clicar no botão de editar
+    setShowEditModal(true);
   };
 
   const handleCloseEditModal = () => {
-    setShowEditModal(false); // Fechar o modal de edição ao clicar no botão de fechar
+    setShowEditModal(false);
   };
 
   const handleSaveEdit = () => {
-    // Adicione aqui a lógica para salvar as edições e fechar o modal de edição
     setShowEditModal(false);
   };
 
   const handleDelete = () => {
-    setShowDeleteModal(true); // Mostrar o modal de exclusão ao clicar no botão de excluir
+    setShowDeleteModal(true);
   };
 
   const handleCloseDeleteModal = () => {
-    setShowDeleteModal(false); // Fechar o modal de exclusão ao clicar no botão de fechar
+    setShowDeleteModal(false);
   };
 
   const handleDeleteConfirm = () => {
-    // Adicione aqui a lógica para excluir o professor e fechar o modal de exclusão
     setShowDeleteModal(false);
   };
 
   return (
     <>
     <MenuApp/>
-    <div style={{ width: '100vw', height: '100vh', display: 'flex', flexDirection: 'row' }}>
-      <div style={{ width: '50%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+    <Grid container style={{ height: '100vh' }}>
+      <Grid item xs={12} sm={6} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <Avatar sx={{ width: '50%', height: '50%' }} src={Logo} variant="square" />
-      </div>
-      <div style={{ width: '50%', background: Fundo}}>
-	  
-        <form style={{ height: '100%', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }} onSubmit={(e) => {
-                e.preventDefault();
-                // Adicione aqui a lógica de autenticação, se necessário
-                window.location.href = '/SignInSide';
-              }} >
-        <TextField
-              sx={{ marginBottom: '8px', width: '50%'}}
-              label="Nome Completo"
-              variant="filled"
-              fullWidth
-            />
-            <TextField
-              sx={{ marginBottom: '8px', width: '50%'}}
-              label="RG"
-              variant="filled"
-              fullWidth
-            />
-            <TextField
-              style={{ marginBottom: '8px', width: '50%'}}
-              label="Email"
-              variant="filled"
-              fullWidth
-            />          
-            <CardCategoriaProfessores/>
-            <CardCargoProfessores/>
-            
-            
-            <div style={{ display: 'flex', justifyContent: 'space-between', width: '50%' }}>
-			 <Button
+      </Grid>
+      <Grid item xs={12} sm={6} style={{ background: Fundo, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <form onSubmit={(e) => {
+          e.preventDefault();
+          window.location.href = '/SignInSide';
+        }} style={{ textAlign: 'center', width: '80%' }}>
+          <TextField
+            sx={{ marginBottom: '8px', width: '100%'}}
+            label="Nome Completo"
+            variant="filled"
+            fullWidth
+          />
+          <TextField
+            sx={{ marginBottom: '8px', width: '100%'}}
+            label="RG"
+            variant="filled"
+            fullWidth
+          />
+          <TextField
+            sx={{ marginBottom: '8px', width: '100%'}}
+            label="Email"
+            variant="filled"
+            fullWidth
+          />          
+          <CardCategoriaProfessores/>
+          <CardCargoProfessores/>
+          
+          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+            <Button
               style={{ marginTop: '16px', width: '45%', background: 'darkblue' }}
               variant="contained"
-              
             >
               Salvar
             </Button>
             <Button
               style={{ marginTop: '16px', width: '45%', background: 'darkblue' }}
               variant="contained"
-              onClick={handleDelete} // Adicionar a função handleDelete ao botão de excluir
+              onClick={handleDelete}
             >
               Excluir
             </Button>
-
             <Button
               style={{ marginTop: '16px', width: '45%', background: 'darkblue' }}
               variant="contained"
-              onClick={handleEdit} // Adicionar a função handleEdit ao botão de editar
+              onClick={handleEdit}
             >
               Editar
             </Button>
           </div>
-          </form>
-    </div>
-  </div>
+        </form>
+      </Grid>
+    </Grid>
 
-  {showEditModal && (
-    <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '10px', maxWidth: '400px' }}>
-        <h2>Editar Professor</h2>
-        <TextField
-          select
-          label="Selecione um professor"
-          value={selectedProfessor}
-          onChange={(e) => setSelectedProfessor(e.target.value)}
-          sx={{ width: '100%' }} // Ajustar a largura do ComboBox para preencher o modal
-        >
-          {/* Aqui você adiciona as opções para selecionar o professor */}
-          <MenuItem value="professor1">Professor 1</MenuItem>
-          <MenuItem value="professor2">Professor 2</MenuItem>
-        </TextField>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Button variant="contained" onClick={handleCloseEditModal}>Fechar</Button>
-          <Button variant="contained" onClick={handleSaveEdit}>Editar</Button>
+    {showEditModal && (
+      <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '10px', maxWidth: '400px' }}>
+          <h2>Editar Professor</h2>
+          <TextField
+            select
+            label="Selecione um professor"
+            value={selectedProfessor}
+            onChange={(e) => setSelectedProfessor(e.target.value)}
+            sx={{ width: '100%' }}
+          >
+            <MenuItem value="professor1">Professor 1</MenuItem>
+            <MenuItem value="professor2">Professor 2</MenuItem>
+          </TextField>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Button variant="contained" onClick={handleCloseEditModal}>Fechar</Button>
+            <Button variant="contained" onClick={handleSaveEdit}>Editar</Button>
+          </div>
         </div>
       </div>
-    </div>
-  )}
+    )}
 
-  {showDeleteModal && (
-    <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '10px', maxWidth: '400px' }}>
-        <h2>Excluir Professor</h2>
-        <TextField
-          select
-          label="Selecione um professor"
-          value={selectedProfessor}
-          onChange={(e) => setSelectedProfessor(e.target.value)}
-          sx={{ width: '100%' }} // Ajustar a largura do ComboBox para preencher o modal
-        >
-          {/* Aqui você adiciona as opções para selecionar o professor */}
-          <MenuItem value="professor1">Professor 1</MenuItem>
-          <MenuItem value="professor2">Professor 2</MenuItem>
-        </TextField>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Button variant="contained" onClick={handleCloseDeleteModal}>Fechar</Button>
-          <Button variant="contained" onClick={handleDeleteConfirm}>Excluir</Button>
+    {showDeleteModal && (
+      <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '10px', maxWidth: '400px' }}>
+          <h2>Excluir Professor</h2>
+          <TextField
+            select
+            label="Selecione um professor"
+            value={selectedProfessor}
+            onChange={(e) => setSelectedProfessor(e.target.value)}
+            sx={{ width: '100%' }}
+          >
+            <MenuItem value="professor1">Professor 1</MenuItem>
+            <MenuItem value="professor2">Professor 2</MenuItem>
+          </TextField>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Button variant="contained" onClick={handleCloseDeleteModal}>Fechar</Button>
+            <Button variant="contained" onClick={handleDeleteConfirm}>Excluir</Button>
+          </div>
         </div>
       </div>
-    </div>
-  )}
-
-  </>
+    )}
+    </>
   );
 };
 
-export default Cadastro;
+export default CadastroProfessores;

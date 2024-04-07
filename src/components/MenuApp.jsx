@@ -4,17 +4,22 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
+import { Link } from 'react-router-dom'; // Importando Link do React Router
 import HomeIcon from '@mui/icons-material/Home';
-import Logo from '../assets/SGCPE.png'
+import Logo from '../assets/SGCPE.png';
 
-const pages = [{ campo: 'Atribuição de Aulas', url: '/atribuicao-aulas' }, { campo: 'Cadastro de Professores', url: '/cadastro-professores' }];
+const pages = [
+  { campo: 'Atribuição de Aulas', url: '/atribuicao-aulas' },
+  { campo: 'Cadastro de Professores', url: '/cadastro-professores' }
+];
+
 const settings = ['Perfil', 'Sair'];
 
 function MenuApp() {
@@ -24,6 +29,7 @@ function MenuApp() {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
+  
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -41,7 +47,7 @@ function MenuApp() {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <IconButton href='/escolha-funcionalidade'>
-            <HomeIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+            <HomeIcon sx={{ mr: 1 }} />
           </IconButton>
 
           <Typography
@@ -92,15 +98,14 @@ function MenuApp() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem href={page.url} key={page.campo} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page.campo}</Typography>
+                <MenuItem key={page.campo} onClick={handleCloseNavMenu}>
+                  <Link to={page.url} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <Typography textAlign="center">{page.campo}</Typography>
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <IconButton href='/escolha-funcionalidade'>
-            <HomeIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          </IconButton>
 
           <Typography
             variant="h5"
@@ -120,12 +125,15 @@ function MenuApp() {
           >
             SGCPE
           </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button href={page.url}
+              <Button
                 key={page}
+                component={Link}
+                to={page.url}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: 'white', display: 'block', textDecoration: 'none' }}
               >
                 {page.campo}
               </Button>
@@ -166,4 +174,5 @@ function MenuApp() {
     </AppBar>
   );
 }
+
 export default MenuApp;

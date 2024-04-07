@@ -1,7 +1,7 @@
-import { Table } from 'rsuite';
-import 'rsuite/Table/styles/index.css';
-import { Table, Button } from 'rsuite';
-import { mockUsers } from './mock';
+import { Table } from "rsuite";
+import "rsuite/Table/styles/index.css";
+import { Table, Button } from "rsuite";
+import { mockUsers } from "./mock";
 
 const { Column, HeaderCell, Cell } = Table;
 const data = mockUsers(20);
@@ -11,7 +11,7 @@ const App = () => {
     <Table
       height={400}
       data={data}
-      onRowClick={rowData => {
+      onRowClick={(rowData) => {
         console.log(rowData);
       }}
     >
@@ -48,8 +48,8 @@ const App = () => {
       <Column width={80} fixed="right">
         <HeaderCell>...</HeaderCell>
 
-        <Cell style={{ padding: '6px' }}>
-          {rowData => (
+        <Cell style={{ padding: "6px" }}>
+          {(rowData) => (
             <Button appearance="link" onClick={() => alert(`id:${rowData.id}`)}>
               Edit
             </Button>
@@ -60,5 +60,4 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
-
+ReactDOM.render(<App />, document.getElementById("root"));

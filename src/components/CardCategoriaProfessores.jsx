@@ -1,23 +1,23 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 export default function BasicSelect() {
-  const [categoria, setCategoria] = React.useState('');
+  const [categoria, setCategoria] = React.useState("");
 
   const handleChange = (event) => {
     setCategoria(event.target.value);
   };
 
   return (
-       <Box sx={{ minWidth: '50%' }}>
+    <Box sx={{ minWidth: "50%" }}>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Categoria</InputLabel>
         <Select
-		 style={{ marginBottom: '8px', width: '100%' }}
+          style={{ marginBottom: "8px", width: "100%" }}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={categoria}
