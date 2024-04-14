@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Logo from '../assets/SGCPE.png';
 import LockResetIcon from '@mui/icons-material/LockReset';
+import { Link as RouterLink } from 'react-router-dom';
 
 function Copyright(props) {
     return (
@@ -33,10 +34,23 @@ export default function RestaurarSenha() {
     const handleEmailChange = (event) => {
         const { value } = event.target;
         setEmail(value);
-        if (!value.includes("@")) {
+        if (value.trim() === '') {
+            setEmailError("E-mail é um campo obrigatório");
+        } else if (!value.includes("@")) {
             setEmailError("E-mail inválido");
         } else {
             setEmailError("");
+        }
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        // Verifica se o campo de e-mail está vazio
+        if (email.trim() === '') {
+            setEmailError("E-mail é um campo obrigatório");
+        } else {
+            // Lógica de autenticação ou envio do formulário
+            window.location.href = '/';
         }
     };
 
@@ -81,11 +95,7 @@ export default function RestaurarSenha() {
                         component="form"
                         noValidate
                         sx={{ mt: 1 }}
-                        onSubmit={(e) => {
-                            e.preventDefault();
-                            // Adicione aqui a lógica de autenticação, se necessário
-                            window.location.href = '/';
-                        }}
+                        onSubmit={handleSubmit}
                     >
                         <TextField
                             margin="normal"
@@ -107,6 +117,15 @@ export default function RestaurarSenha() {
                             sx={{ mt: 3, mb: 2 }}
                         >
                             Recuperar Senha
+                        </Button>
+                        <Button
+                            fullWidth
+                            variant="contained"
+                            sx={{ mt: 1, mb: 2 }}
+                            component={RouterLink}
+                            to="/"
+                        >
+                            Voltar para o Login
                         </Button>
                         <Box mt={5}>
                             <Copyright />

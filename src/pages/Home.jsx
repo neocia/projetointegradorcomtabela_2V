@@ -14,7 +14,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Logo from '../assets/SGCPE.png';
 import { Link as RouterLink } from 'react-router-dom';
 
-
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -31,6 +30,46 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function Home() {
+  const [rg, setRg] = React.useState('');
+  const [rgError, setRgError] = React.useState('');
+  const [senha, setSenha] = React.useState('');
+  const [senhaError, setSenhaError] = React.useState('');
+
+  const handleRgChange = (event) => {
+    const { value } = event.target;
+    setRg(value);
+    if (value.trim() === '') {
+      setRgError('RG é um campo obrigatório');
+    } else {
+      setRgError('');
+    }
+  };
+
+  const handleSenhaChange = (event) => {
+    const { value } = event.target;
+    setSenha(value);
+    if (value.trim() === '') {
+      setSenhaError('Senha é um campo obrigatório');
+    } else {
+      setSenhaError('');
+    }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Verifica se todos os campos estão preenchidos
+    if (rg.trim() === '') {
+      setRgError('RG é um campo obrigatório');
+    }
+    if (senha.trim() === '') {
+      setSenhaError('Senha é um campo obrigatório');
+    }
+    // Se todos os campos obrigatórios estiverem preenchidos, executa a lógica de autenticação ou envio do formulário
+    if (rg.trim() !== '' && senha.trim() !== '') {
+      window.location.href = '/escolha-funcionalidade';
+    }
+  };
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
@@ -72,11 +111,7 @@ export default function Home() {
             component="form"
             noValidate
             sx={{ mt: 1 }}
-            onSubmit={(e) => {
-              e.preventDefault();
-              // Adicione aqui a lógica de autenticação, se necessário
-              window.location.href = '/escolha-funcionalidade';
-            }}
+            onSubmit={handleSubmit}
           >
             <TextField
               margin="normal"
@@ -86,6 +121,10 @@ export default function Home() {
               label="RG"
               name="RG"
               autoFocus
+              value={rg}
+              onChange={handleRgChange}
+              error={Boolean(rgError)}
+              helperText={rgError}
             />
             <TextField
               margin="normal"
@@ -96,6 +135,10 @@ export default function Home() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={senha}
+              onChange={handleSenhaChange}
+              error={Boolean(senhaError)}
+              helperText={senhaError}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
