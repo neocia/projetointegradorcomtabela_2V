@@ -14,6 +14,8 @@ const CadastroProfessores = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedProfessor, setSelectedProfessor] = useState('');
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
 
   const handleEdit = () => {
     setShowEditModal(true);
@@ -37,6 +39,16 @@ const CadastroProfessores = () => {
 
   const handleDeleteConfirm = () => {
     setShowDeleteModal(false);
+  };
+
+  const handleEmailChange = (event) => {
+    const { value } = event.target;
+    setEmail(value);
+    if (!value.includes("@")) {
+      setEmailError("E-mail inválido");
+    } else {
+      setEmailError("");
+    }
   };
 
   return (
@@ -65,10 +77,14 @@ const CadastroProfessores = () => {
           />
           <TextField
             sx={{ marginBottom: '8px', width: '100%'}}
-            label="Email"
+            label="E-mail"
             variant="filled"
             fullWidth
-          />          
+            value={email}
+            onChange={handleEmailChange}
+            error={Boolean(emailError)}
+            helperText={emailError}
+          />
           <CardCategoriaProfessores/>
           <CardCargoProfessores/>
           

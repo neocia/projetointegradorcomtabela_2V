@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -6,11 +6,23 @@ import { Avatar } from '@mui/material';
 import Logo from '../assets/SGCPE.png';
 import CardCargoUsuarios from "../components/CardCargoUsuarios";
 import CardEscolas from "../components/CardEscolas";
-import Background from '../assets/Fundo.png'
+import Background from '../assets/Fundo.png';
 
 const Fundo = `url(${Background})`;
 
 const CadastroUsuarios = () => {
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+
+  const handleEmailChange = (event) => {
+    const { value } = event.target;
+    setEmail(value);
+    if (!value.includes("@")) {
+      setEmailError("E-mail inválido");
+    } else {
+      setEmailError("");
+    }
+  };
 
   return (
     <Grid container style={{ height: '100vh' }}>
@@ -42,6 +54,10 @@ const CadastroUsuarios = () => {
             label="E-mail"
             variant="filled"
             fullWidth
+            value={email}
+            onChange={handleEmailChange}
+            error={Boolean(emailError)}
+            helperText={emailError}
           />
           <TextField
             sx={{ marginBottom: '8px', width: '100%' }}
@@ -68,6 +84,7 @@ const CadastroUsuarios = () => {
             <Button
               style={{ marginTop: '16px', width: '45%', background: 'darkblue' }}
               variant="contained"
+              type="submit"
             >
               Enviar
             </Button>

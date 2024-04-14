@@ -11,7 +11,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Logo from '../assets/SGCPE.png';
 import LockResetIcon from '@mui/icons-material/LockReset';
 
-
 function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -28,6 +27,19 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function RestaurarSenha() {
+    const [email, setEmail] = React.useState('');
+    const [emailError, setEmailError] = React.useState('');
+
+    const handleEmailChange = (event) => {
+        const { value } = event.target;
+        setEmail(value);
+        if (!value.includes("@")) {
+            setEmailError("E-mail inválido");
+        } else {
+            setEmailError("");
+        }
+    };
+
     return (
         <ThemeProvider theme={defaultTheme}>
             <Grid container component="main" sx={{ height: '100vh' }}>
@@ -79,10 +91,14 @@ export default function RestaurarSenha() {
                             margin="normal"
                             required
                             fullWidth
-                            id="E-mail"
+                            id="email"
                             label="E-mail"
-                            name="E-mail"
+                            name="email"
                             autoFocus
+                            value={email}
+                            onChange={handleEmailChange}
+                            error={Boolean(emailError)}
+                            helperText={emailError}
                         />
                         <Button
                             type="submit"
