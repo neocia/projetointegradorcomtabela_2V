@@ -77,8 +77,47 @@ const CadastroUsuarios = () => {
       return;
     }
     // Lógica de autenticação ou envio do formulário
-    window.location.href = '/SignInSide';
+    // handleCadastroAPISubmit();
+    window.location.href = '/';
   };
+
+  // const handleCadastroAPISubmit = () => {
+  //   // Adicione aqui a lógica de autenticação, se necessário
+  //   // return alert(escolasPai)
+  //   const url = "http://localhost:3000/login_senha/register";
+  //   const opcoes = {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ NomeCompleto, rg, email, senha }),
+      
+  //   };
+
+  //   fetch(url, opcoes)
+  //     .then((resposta) => {
+  //       // Verificando se a requisição foi bem-sucedida
+  //       if (resposta.ok) {
+  //         console.log("Requisição bem-sucedida!");
+  //         // Você pode processar a resposta da API aqui, se necessário
+  //         window.location = "/";
+  //         return resposta.json();
+  //       } else {
+         
+  //         console.error("Erro ao fazer a requisição:", resposta.status);
+  //         return resposta.json()
+  //       }
+
+  //     })
+  //     .then((data) => {
+  //       // Processar os dados da resposta, se necessário
+  //       console.log("Resposta da API:", data);
+  //       alert(data.message);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Erro durante a requisição:", error);
+  //     });
+  // };
 
   return (
     <Grid container style={{ height: '100vh' }}>

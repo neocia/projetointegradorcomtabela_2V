@@ -14,19 +14,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Logo from '../assets/SGCPE.png';
 import { Link as RouterLink } from 'react-router-dom';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://www.sgcpe.com.br/">
-        SGCPE
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
 const defaultTheme = createTheme();
 
 export default function Home() {
@@ -66,8 +53,47 @@ export default function Home() {
     }
     // Se todos os campos obrigatórios estiverem preenchidos, executa a lógica de autenticação ou envio do formulário
     if (rg.trim() !== '' && senha.trim() !== '') {
-      window.location.href = '/escolha-funcionalidade';
+      handleAPISubmit();
     }
+  };
+
+  const handleAPISubmit = () => {
+    // Adicione aqui a lógica de autenticação, se necessário
+    const url = "http://localhost:3000/login_senha/login";
+    const opcoes = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ rg, senha }),
+      
+    };
+
+    fetch(url, opcoes)
+      .then((resposta) => {
+        // Verificando se a requisição foi bem-sucedida
+        if (resposta.ok) {
+          console.log("Requisição bem-sucedida!");
+          // Você pode processar a resposta da API aqui, se necessário
+
+          window.location = "/escolha-funcionalidade";
+
+          return resposta.json();
+        } else {
+         
+          console.error("Erro ao fazer a requisição:", resposta.status);
+          return resposta.json()
+        }
+
+      })
+      .then((data) => {
+        // Processar os dados da resposta, se necessário
+        console.log("Resposta da API:", data);
+        alert(data.message);
+      })
+      .catch((error) => {
+        console.error("Erro durante a requisição:", error);
+      });
   };
 
   return (
@@ -165,7 +191,6 @@ export default function Home() {
               </Grid>
             </Grid>
             <Box mt={5}>
-              <Copyright />
             </Box>
           </Box>
         </Grid>
