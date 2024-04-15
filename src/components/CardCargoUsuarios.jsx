@@ -5,8 +5,8 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-export default function BasicSelect() {
-  const [cargo, setCargo] = React.useState("");
+export default function CargoUsuarios({cargo, setCargo}) {
+  // const [cargo, setCargo] = React.useState("");
 
   const handleChange = (event) => {
     setCargo(event.target.value);
@@ -24,9 +24,9 @@ export default function BasicSelect() {
           label="Cargo"
           onChange={handleChange}
         >
-          <MenuItem value={10}>Diretor</MenuItem>
-          <MenuItem value={20}>Gerente</MenuItem>
-          <MenuItem value={30}>Agente de Organização</MenuItem>
+          <MenuItem value={'Diretor'} >Diretor</MenuItem>
+          <MenuItem value={'Gerente'}>Gerente</MenuItem>
+          <MenuItem value={'Agente de Organização'}>Agente de Organização</MenuItem>
         </Select>
       </FormControl>
     </Box>

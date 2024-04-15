@@ -186,7 +186,7 @@ export default function Home() {
               </Grid>
               <Grid item>
                 <Link href="/cadastro-usuarios" variant="body2">
-                  Não tem uma conta? Registrar-se.
+                  Não tem uma conta? Registre-se.
                 </Link>
               </Grid>
             </Grid>

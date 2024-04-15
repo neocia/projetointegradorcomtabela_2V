@@ -11,8 +11,8 @@ import Background from '../assets/Fundo.png';
 const Fundo = `url(${Background})`;
 
 const CadastroUsuarios = () => {
-  const [nome, setNome] = useState('');
-  const [nomeError, setNomeError] = useState('');
+  const [nomeCompleto, setNomeCompleto] = useState('');
+  const [nomeCompletoError, setNomeCompletoError] = useState('');
   const [rg, setRg] = useState('');
   const [rgError, setRgError] = useState('');
   const [email, setEmail] = useState('');
@@ -20,14 +20,16 @@ const CadastroUsuarios = () => {
   const [senha, setSenha] = useState('');
   const [senhaError, setSenhaError] = useState('');
   const [formEnviado, setFormEnviado] = useState(false);
+  const [escolas, setEscolas] = React.useState("");
+  const [cargo, setCargo] = React.useState("");
 
   const handleNomeChange = (event) => {
     const { value } = event.target;
-    setNome(value);
+    setNomeCompleto(value);
     if (value.trim() === '') {
-      setNomeError('Nome é um campo obrigatório');
+      setNomeCompletoError('Nome é um campo obrigatório');
     } else {
-      setNomeError('');
+      setNomeCompletoError('');
     }
   };
 
@@ -67,7 +69,7 @@ const CadastroUsuarios = () => {
     setFormEnviado(true);
     // Verifica se todos os campos estão preenchidos corretamente
     if (
-      nome.trim() === '' ||
+      nomeCompleto.trim() === '' ||
       rg.trim() === '' ||
       email.trim() === '' ||
       senha.trim() === '' ||
@@ -77,47 +79,46 @@ const CadastroUsuarios = () => {
       return;
     }
     // Lógica de autenticação ou envio do formulário
-    // handleCadastroAPISubmit();
-    window.location.href = '/';
+    handleCadastroAPISubmit();
   };
 
-  // const handleCadastroAPISubmit = () => {
-  //   // Adicione aqui a lógica de autenticação, se necessário
-  //   // return alert(escolasPai)
-  //   const url = "http://localhost:3000/login_senha/register";
-  //   const opcoes = {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({ NomeCompleto, rg, email, senha }),
+  const handleCadastroAPISubmit = () => {
+    // Adicione aqui a lógica de autenticação, se necessário
+    
+    const url = "http://localhost:3000/login_senha/register";
+    const opcoes = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({'RG': rg, nomeCompleto, email, senha, 'cargoEscolar': cargo, 'nomeEscola': escolas }),
       
-  //   };
+    };
 
-  //   fetch(url, opcoes)
-  //     .then((resposta) => {
-  //       // Verificando se a requisição foi bem-sucedida
-  //       if (resposta.ok) {
-  //         console.log("Requisição bem-sucedida!");
-  //         // Você pode processar a resposta da API aqui, se necessário
-  //         window.location = "/";
-  //         return resposta.json();
-  //       } else {
+    fetch(url, opcoes)
+      .then((resposta) => {
+        // Verificando se a requisição foi bem-sucedida
+        if (resposta.ok) {
+          console.log("Requisição bem-sucedida!");
+          // Você pode processar a resposta da API aqui, se necessário
+          window.location = "/";
+          return resposta.json();
+        } else {
          
-  //         console.error("Erro ao fazer a requisição:", resposta.status);
-  //         return resposta.json()
-  //       }
+          console.error("Erro ao fazer a requisição:", resposta.status);
+          return resposta.json()
+        }
 
-  //     })
-  //     .then((data) => {
-  //       // Processar os dados da resposta, se necessário
-  //       console.log("Resposta da API:", data);
-  //       alert(data.message);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Erro durante a requisição:", error);
-  //     });
-  // };
+      })
+      .then((data) => {
+        // Processar os dados da resposta, se necessário
+        console.log("Resposta da API:", data);
+        alert(data.message);
+      })
+      .catch((error) => {
+        console.error("Erro durante a requisição:", error);
+      });
+  };
 
   return (
     <Grid container style={{ height: '100vh' }}>
@@ -133,10 +134,10 @@ const CadastroUsuarios = () => {
             label="Nome completo"
             variant="filled"
             fullWidth
-            value={nome}
+            value={nomeCompleto}
             onChange={handleNomeChange}
-            error={formEnviado && nome.trim() === ''}
-            helperText={(formEnviado && nome.trim() === '') && 'Nome é um campo obrigatório'}
+            error={formEnviado && nomeCompleto.trim() === ''}
+            helperText={(formEnviado && nomeCompleto.trim() === '') && 'Nome é um campo obrigatório'}
           />
           <TextField
             style={{ marginBottom: '8px', width: '100%' }}
@@ -172,13 +173,14 @@ const CadastroUsuarios = () => {
             error={formEnviado && !senha}
             helperText={(formEnviado && !senha) && 'Senha é um campo obrigatório'}
           />
-          <CardCargoUsuarios />
-          <CardEscolas />
+          <CardCargoUsuarios Cargo={cargo} setCargo={setCargo}/>
+          <CardEscolas Escolas={escolas} setEscolas={setEscolas}/>
 
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
             <Button
               style={{ marginTop: '16px', width: '45%', background: 'darkblue' }}
               variant="contained"
+              href="/"
             >
               Voltar
             </Button>

@@ -5,8 +5,8 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-export default function BasicSelect() {
-  const [escolas, setEscolas] = React.useState("");
+export default function Escolas ({escolas, setEscolas}) {
+  // const [escolas, setEscolas] = React.useState("");
 
   const handleChange = (event) => {
     setEscolas(event.target.value);
@@ -24,11 +24,11 @@ export default function BasicSelect() {
           label="Escolas"
           onChange={handleChange}
         >
-          <MenuItem value={10}>Escola A</MenuItem>
-          <MenuItem value={20}>Escola B</MenuItem>
-          <MenuItem value={30}>Escola C</MenuItem>
-          <MenuItem value={30}>Escola D</MenuItem>
-          <MenuItem value={30}>Escola E</MenuItem>
+          <MenuItem value={'Escola A'}>Escola A</MenuItem>
+          <MenuItem value={'Escola B'}>Escola B</MenuItem>
+          <MenuItem value={'Escola C'}>Escola C</MenuItem>
+          <MenuItem value={'Escola D'}>Escola D</MenuItem>
+          <MenuItem value={'Escola E'}>Escola E</MenuItem>
         </Select>
       </FormControl>
     </Box>
