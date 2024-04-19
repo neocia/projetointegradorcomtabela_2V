@@ -6,7 +6,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 export default function Escolas ({escolas, setEscolas}) {
-  // const [escolas, setEscolas] = React.useState("");
+
 
   const handleChange = (event) => {
     setEscolas(event.target.value);

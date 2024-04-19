@@ -73,7 +73,7 @@ export default function Home() {
       .then((resposta) => {
         // Verificando se a requisição foi bem-sucedida
         if (resposta.ok) {
-          console.log("Requisição bem-sucedida!");
+
           // Você pode processar a resposta da API aqui, se necessário
 
           window.location = "/escolha-funcionalidade";
@@ -81,14 +81,12 @@ export default function Home() {
           return resposta.json();
         } else {
          
-          console.error("Erro ao fazer a requisição:", resposta.status);
           return resposta.json()
         }
 
       })
       .then((data) => {
         // Processar os dados da resposta, se necessário
-        console.log("Resposta da API:", data);
         alert(data.message);
       })
       .catch((error) => {

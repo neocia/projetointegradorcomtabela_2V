@@ -6,6 +6,7 @@ import CadastroUsuarios from './pages/CadastroUsuarios';
 import CadastroProfessores from './pages/CadastroProfessores';
 import AtribuicaoAulas from './pages/AtribuicaoAulas';
 import RestaurarSenha from './pages/RestaurarSenha';
+import Professores from './pages/Professores';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/cadastro-professores" element={<CadastroProfessores />} />
           <Route path="/atribuicao-aulas" element={<AtribuicaoAulas />} />
           <Route path="/restaurar-senha" element={<RestaurarSenha />} />
+          <Route path="/professores" element={<Professores/>} />
         </Routes>
       </div>
     </Router>

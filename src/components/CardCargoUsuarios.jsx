@@ -6,7 +6,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 export default function CargoUsuarios({cargo, setCargo}) {
-  // const [cargo, setCargo] = React.useState("");
+
 
   const handleChange = (event) => {
     setCargo(event.target.value);

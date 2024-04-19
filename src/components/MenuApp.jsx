@@ -17,6 +17,8 @@ import Logo from '../assets/SGCPE.png';
 
 const pages = [
   { campo: 'Atribuição de Aulas', url: '/atribuicao-aulas' },
+  { campo: 'Cadastro Atribuição de Aulas', url: '/cadastro-aulas' },
+  { campo: 'Professores', url: '/professores' },
   { campo: 'Cadastro de Professores', url: '/cadastro-professores' }
 ];
 
