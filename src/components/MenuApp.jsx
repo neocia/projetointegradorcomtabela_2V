@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import { Link } from 'react-router-dom'; // Importando Link do React Router
+import { Link } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import Logo from '../assets/SGCPE.png';
 
@@ -131,7 +131,7 @@ function MenuApp() {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.campo}
                 component={Link}
                 to={page.url}
                 onClick={handleCloseNavMenu}
@@ -165,7 +165,7 @@ function MenuApp() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting + 1} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { Avatar, MenuItem, Grid } from '@mui/material';
+import { Avatar, Grid } from '@mui/material';
 import Logo from '../assets/SGCPE.png';
 import CardCargoProfessores from "../components/CardCargoProfessores";
 import CardCategoriaProfessores from "../components/CardCategoriaProfessores";
-import Background from '../assets/Fundo.png'
+import Background from '../assets/Fundo.png';
 import MenuApp from '../components/MenuApp';
 
 const Fundo = `url(${Background})`;

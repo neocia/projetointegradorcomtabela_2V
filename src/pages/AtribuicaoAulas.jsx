@@ -1,7 +1,7 @@
 import React from "react";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import TabelaAtribuicaoAulas from "../components/TabelaAtribuicaoAulas";
-import { Box, Button, TextField, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { Box, Button, TextField, FormControl } from '@mui/material';
 import MenuApp from "../components/MenuApp";
 import Background from '../assets/Fundo.png';
 
