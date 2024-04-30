@@ -9,10 +9,11 @@ import { Box } from "@mui/material";
 
 export default function InputHoras({ label, value, setValue }) {
   return (
-      <LocalizationProvider dateAdapter={AdapterDayjs} >
-        <DemoContainer components={["TimePicker"]} sx={{ maxWidth: "100%" }}>
+    <Box sx={{ width: "100%" }}>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DemoContainer components={["TimePicker"]} sx={{ width: "100%" }}>
           <TimePicker
-            sx={{ width: "10%" }}
+            sx={{ width: "100%" }}
             label={label}
             value={value}
             onChange={(newValue) => setValue(newValue)}
@@ -25,5 +26,6 @@ export default function InputHoras({ label, value, setValue }) {
           />
         </DemoContainer>
       </LocalizationProvider>
+    </Box>
   );
 }

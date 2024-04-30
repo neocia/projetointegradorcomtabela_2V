@@ -176,21 +176,49 @@ export default function CadastroAtribuicaoAulas() {
                 flexDirection: "row",
                 justifyContent: "space-around",
                 width: "100%",
-                marginTop: "5px",
+                marginBottom: "5px"
               }}
             >
-              <InputData value={data} setValue={setData} />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  width: "33%",
+                  marginTop: "5px",
+                }}
+              >
+                <InputData value={data} setValue={setData} />
+              </div>
 
-              <InputHoras
-                label={"Hora de Início"}
-                value={horaInicio}
-                setValue={setHoraInicio}
-              />
-              <InputHoras
-                label={"Hora de Término"}
-                value={horaTermino}
-                setValue={setHoraTermino}
-              />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  width: "33%",
+                  marginTop: "5px",
+                }}
+              >
+                <InputHoras
+                  label={"Hora de Início"}
+                  value={horaInicio}
+                  setValue={setHoraInicio}
+                />
+              </div>
+
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  width: "33%",
+                  marginTop: "5px",
+                }}
+              >
+                <InputHoras
+                  label={"Hora de Término"}
+                  value={horaTermino}
+                  setValue={setHoraTermino}
+                />
+              </div>
             </div>
 
             <div
@@ -199,7 +227,7 @@ export default function CadastroAtribuicaoAulas() {
                 flexDirection: "row",
                 justifyContent: "space-around",
                 width: "100%",
-                marginTop: "5px",
+                marginTop: "5px"
               }}
             >
               <FormControl fullWidth>
@@ -213,9 +241,9 @@ export default function CadastroAtribuicaoAulas() {
                   Ciclo
                 </InputLabel>
                 <Select
-                  style={{ marginBottom: "8px", width: "95%" }}
+                  style={{ marginBottom: "8px", width: "99%" }}
                   value={ciclo}
-                  label="UA"
+                  label="Ciclo"
                   onChange={(event) => {
                     setCiclo(event.target.value);
                   }}
@@ -229,7 +257,7 @@ export default function CadastroAtribuicaoAulas() {
               <FormControl fullWidth>
                 <InputLabel>Turno</InputLabel>
                 <Select
-                  style={{ marginBottom: "8px", width: "95%" }}
+                  style={{ marginBottom: "8px", width: "99%" }}
                   value={turno}
                   label="Turno"
                   onChange={(event) => {
@@ -245,7 +273,7 @@ export default function CadastroAtribuicaoAulas() {
               <FormControl fullWidth>
                 <InputLabel>Turma</InputLabel>
                 <Select
-                  style={{ marginBottom: "8px", width: "95%" }}
+                  style={{ marginBottom: "8px", width: "99%" }}
                   value={turma}
                   label="Turma"
                   onChange={(event) => {
@@ -284,12 +312,11 @@ export default function CadastroAtribuicaoAulas() {
               <Button
                 style={{
                   marginTop: "16px",
-                  width: "30%",
+                  width: "40%",
                   background: "darkblue",
                 }}
                 variant="contained"
                 type="submit"
-                // onClick={handleCadastroProfessorSubmit}
               >
                 Salvar
               </Button>
