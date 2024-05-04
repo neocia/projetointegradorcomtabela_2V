@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
-const url = "http://localhost:3000/cadastro_professores/"; // Substitua isso com a URL da sua API
+const url = "https://nestjs-sgcpe-api.vercel.app/cadastro_professores/"; // Substitua isso com a URL da sua API
 
 const DadosCadastroProfessores = () => {
   const [dados, setDados] = useState([]);
@@ -18,6 +18,7 @@ const DadosCadastroProfessores = () => {
       try {
         const response = await fetch(url);
         const data = await response.json();
+        
         setDados(data.cadastro_professores);
       } catch (error) {
         console.error("Erro ao buscar dados da API:", error);

@@ -59,7 +59,7 @@ export default function Home() {
 
   const handleAPISubmit = () => {
     // Adicione aqui a lógica de autenticação, se necessário
-    const url = "http://localhost:3000/login_senha/login";
+    const url = "https://nestjs-sgcpe-api.vercel.app/login_senha/login";
     const opcoes = {
       method: "POST",
       headers: {

@@ -27,7 +27,7 @@ const CadastroProfessores = () => {
   const handleCadastroProfessorSubmit = () => {
     // Adicione aqui a lógica de autenticação, se necessário
     
-    const url = "http://localhost:3000/cadastro_professores";
+    const url = "https://nestjs-sgcpe-api.vercel.app/cadastro_professores";
     const opcoes = {
       method: "POST",
       headers: {

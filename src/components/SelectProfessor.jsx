@@ -5,7 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-const url = "http://localhost:3000/cadastro_professores/";
+const url = "https://nestjs-sgcpe-api.vercel.app/cadastro_professores/";
 
 export default function SelectProfessor({label, professor, setProfessor}) {
   const [dados, setDados] = React.useState([]);

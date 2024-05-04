@@ -18,7 +18,7 @@ import Logo from "../assets/SGCPE.png";
 import FormControl from '@mui/material/FormControl';
 
 const Fundo = `url(${Background})`;
-const url = "http://localhost:3000/cadastro_professores/"; 
+const url = "https://nestjs-sgcpe-api.vercel.app/cadastro_professores/"; 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;

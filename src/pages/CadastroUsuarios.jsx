@@ -85,7 +85,7 @@ const CadastroUsuarios = () => {
   const handleCadastroAPISubmit = () => {
     // Adicione aqui a lógica de autenticação, se necessário
     
-    const url = "http://localhost:3000/login_senha/register";
+    const url = "https://nestjs-sgcpe-api.vercel.app/login_senha/register";
     const opcoes = {
       method: "POST",
       headers: {

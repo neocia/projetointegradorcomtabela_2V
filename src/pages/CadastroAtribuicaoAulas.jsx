@@ -44,7 +44,7 @@ export default function CadastroAtribuicaoAulas() {
     // console.log({horaInicioAPI, horaFimAPI, dataAPI });
 
     // Adicione aqui a lógica de autenticação, se necessário
-    const url = "http://localhost:3000/atribuicao_aulas";
+    const url = "https://nestjs-sgcpe-api.vercel.app/atribuicao_aulas";
     const opcoes = {
       method: "POST",
       headers: {
