@@ -8,8 +8,13 @@ import AtribuicaoAulas from './pages/AtribuicaoAulas';
 import RestaurarSenha from './pages/RestaurarSenha';
 import Professores from './pages/Professores';
 import CadastroAtribuicaoAulas from './pages/CadastroAtribuicaoAulas';
+<<<<<<< HEAD
 import AtribuicaoAulas2 from './pages/AtribuicaoAulas2';
 import Perfil from './pages/Perfil';
+=======
+import AtribuicaoAulas2 from './pages/AtribuicaoAulas';
+
+>>>>>>> 415548e3cc807cc9c53966a3276de9c435a0d60d
 
 function App() {
   return (
@@ -20,7 +25,7 @@ function App() {
           <Route path="/cadastro-usuarios" element={<CadastroUsuarios />} />
           <Route path="/escolha-funcionalidade" element={<EscolhaFuncionalidade />} />
           <Route path="/cadastro-professores" element={<CadastroProfessores />} />
-          <Route path="/atribuicao-aulas" element={<AtribuicaoAulas2 />} />
+          <Route path="/atribuicao-aulas" element={<AtribuicaoAulas2/>} />
           <Route path="/restaurar-senha" element={<RestaurarSenha />} />
           <Route path="/professores" element={<Professores/>} />
           <Route path="/cadastro-aulas" element={<CadastroAtribuicaoAulas/>} />

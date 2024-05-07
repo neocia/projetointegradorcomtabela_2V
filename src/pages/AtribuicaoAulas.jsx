@@ -1,71 +1,87 @@
-import React from "react";
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import TabelaAtribuicaoAulas from "../components/TabelaAtribuicaoAulas";
-import { Box, Button, TextField, FormControl } from '@mui/material';
+import "datatables.net-dt/css/dataTables.dataTables.css";
+import "datatables.net-buttons-dt/css/buttons.dataTables.css";
+import "datatables.net-buttons-dt/css/buttons.dataTables.min.css";
+import "datatables.net-buttons/js/buttons.html5.mjs";
+import "datatables.net-buttons/js/buttons.print.js";
+import "datatables.net-buttons/js/buttons.colVis.js";
+import "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js";
+
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+
 import MenuApp from "../components/MenuApp";
-import Background from '../assets/Fundo.png';
+import ReactDataTables from "../components/Tabela";
 
-const theme = createTheme();
+const columns = [
+  { data: "nomeProfessor", title: "Professor" },
+  { data: "nomeProfessorEventual", title: "Professor Eventual" },
+  { data: "UA", title: "Unidade Administrativa" },
+  { data: "CIE", title: "CIE" },
+  { data: "ciclo", title: "Ciclo" },
+  { data: "Data", title: "Data" },
+  { data: "HoraInicioAula", title: "Hora Inicio" },
+  { data: "HoraFimAula", title: "Hora Fim" },
+  { data: "turno", title: "Turno" },
+  { data: "turma", title: "Turma" },
+  // { data: "escola", title: "Escola" },
+  {data: null, title: "Editar"},
+  {data: null, title: "Excluir"},
 
-export default function AtribuicaoAulas() {
-    const [startDate, setStartDate] = React.useState('');
-    const [endDate, setEndDate] = React.useState('');
+];
 
-    const handleSave = () => {
-        // Adicionar lógica para salvar as datas selecionadas
-    };
-
-    const handleDateChange = (date, type) => {
-        if (type === 'start') {
-            setStartDate(date);
-        } else {
-            setEndDate(date);
+const layout = {
+  topStart: {
+    buttons: [
+      "pageLength",
+      {
+        extend: "copy",
+        text: "Copy to clipboard",
+      },
+      {
+        extend: 'excel',
+        text: "excel colluns",
+        exportOptions: {
+            columns: [0, 1, 2, 5]
         }
-    };
+    },
+      "csv",
+      "excel",
+      "pdf",
+      "print",
+    ],
+  },
+};
 
-    return (
-        <ThemeProvider theme={theme}>
-            <>
-                <div style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000 }}>
-                    <MenuApp />
-                </div>
-                <Box sx={{ paddingTop: '60px', display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', backgroundImage: `url(${Background})`, backgroundSize: 'cover' }}>
-                    <form style={{ textAlign: 'center' }}>
-                        <TabelaAtribuicaoAulas />
-                        <Box mt={2} mb={2} display="flex" justifyContent="center" alignItems="center">
-                            <FormControl fullWidth style={{ marginRight: '10px' }}>
-                                <TextField
-                                    id="startDate"
-                                    label="Data de Início"
-                                    type="date"
-                                    value={startDate}
-                                    onChange={(e) => handleDateChange(e.target.value, 'start')}
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
-									
-                                />
-                            </FormControl>
-                            <FormControl fullWidth style={{ marginLeft: '10px' }}>
-                                <TextField
-                                    id="endDate"
-                                    label="Data de Fim"
-                                    type="date"
-                                    value={endDate}
-                                    onChange={(e) => handleDateChange(e.target.value, 'end')}
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
-									
-                                />
-                            </FormControl>
-                            <FormControl fullWidth style={{ marginLeft: '10px', minWidth: '50px' }}>
-                                <Button variant="contained" onClick={handleSave}>Salvar</Button>
-                            </FormControl>
-                        </Box>
-                    </form>
-                </Box>
-            </>
-        </ThemeProvider>
-    );
-}
+const columnDefs = [
+  {
+      data: "null",
+      defaultContent: '<button id="editar">Editar</button>',
+      targets: -2
+  },
+  {
+    data: "null",
+    defaultContent: '<button id="excluir">Excluir</button>',
+    targets: -1
+  }
+]
+
+
+const EmployeeTable = () => {
+  pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
+  return (
+    <>
+      <MenuApp />
+
+      <ReactDataTables
+        columns={columns}
+        destroy={true}
+        layout={layout}
+        ajax={"https://nestjs-sgcpe-api.vercel.app/atribuicao_aulas/view"}
+        columnDefs ={columnDefs}
+      />
+    </>
+  );
+};
+
+export default EmployeeTable;
