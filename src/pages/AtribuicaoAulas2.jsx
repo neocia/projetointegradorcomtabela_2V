@@ -23,8 +23,6 @@ const columns = [
   { data: "HoraFimAula", title: "Hora Fim" },
   { data: "turno", title: "Turno" },
   { data: "turma", title: "Turma" },
-  {data: null, title: "Editar"},
-  {data: null, title: "Excluir"},
 
 ];
 
@@ -50,19 +48,6 @@ const layout = {
   },
 };
 
-const columnDefs = [
-  {
-      data: "null",
-      defaultContent: '<button id="editar">Editar</button>',
-      targets: -2
-  },
-  {
-    data: "null",
-    defaultContent: '<button id="excluir">Excluir</button>',
-    targets: -1
-  }
-]
-
 
 const EmployeeTable = () => {
   pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -76,7 +61,6 @@ const EmployeeTable = () => {
         destroy={true}
         layout={layout}
         ajax={"https://nestjs-sgcpe-api.vercel.app/atribuicao_aulas/view"}
-        columnDefs ={columnDefs}
       />
     </>
   );

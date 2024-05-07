@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Adicionando importação do Link e useNavigate
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,6 +11,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import { Link } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import Logo from '../assets/SGCPE.png';
 
@@ -27,7 +27,6 @@ const settings = ['Perfil', 'Sair'];
 function MenuApp() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const navigate = useNavigate(); // Adicionando o hook useNavigate
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -41,13 +40,8 @@ function MenuApp() {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = (option) => { // Modificando a função handleCloseUserMenu para receber a opção
+  const handleCloseUserMenu = () => {
     setAnchorElUser(null);
-    if (option === 'Perfil') {
-      navigate('/perfil-usuario');
-    } else if (option === 'Sair') {
-      navigate('/');
-    }
   };
 
   return (
@@ -171,7 +165,7 @@ function MenuApp() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={() => handleCloseUserMenu(setting)}> {/* Passando a opção para a função */}
+                <MenuItem key={setting + 1} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}

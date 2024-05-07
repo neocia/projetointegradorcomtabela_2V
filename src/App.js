@@ -9,7 +9,7 @@ import RestaurarSenha from './pages/RestaurarSenha';
 import Professores from './pages/Professores';
 import CadastroAtribuicaoAulas from './pages/CadastroAtribuicaoAulas';
 import AtribuicaoAulas2 from './pages/AtribuicaoAulas2';
-
+import Perfil from './pages/Perfil';
 
 function App() {
   return (
@@ -24,6 +24,7 @@ function App() {
           <Route path="/restaurar-senha" element={<RestaurarSenha />} />
           <Route path="/professores" element={<Professores/>} />
           <Route path="/cadastro-aulas" element={<CadastroAtribuicaoAulas/>} />
+		  <Route path="/perfil-usuario" element={<Perfil/>} />
         </Routes>
       </div>
     </Router>
